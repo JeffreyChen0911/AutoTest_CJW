@@ -1,0 +1,7 @@
+/target/
+.classpath
+test-output/
+src/main/resources/rebel.xml
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.m2e.core.prefs
+.settings/
