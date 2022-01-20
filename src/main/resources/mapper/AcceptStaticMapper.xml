@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AcceptStatic">
+
+	<!--实体映射-->
+	<resultMap id="acceptStaticResultMap" type="java.util.Map">
+		<!---->
+        <id property="id" column="id" jdbcType="BIGINT" />
+        <!--编码类型-->
+        <result property="codeType" column="code_type" jdbcType="VARCHAR" />
+        <!--编码值-->
+        <result property="codeValue" column="code_value" jdbcType="VARCHAR" />
+        <!--编码名称-->
+        <result property="codeName" column="code_name" jdbcType="VARCHAR" />
+        <!--编码描述-->
+        <result property="codeDesc" column="code_desc" jdbcType="VARCHAR" />
+        <!--编码别名,用作java的参数名称-->
+        <result property="codeTypeAlias" column="code_type_alias" jdbcType="VARCHAR" />
+        <!--排序ID-->
+        <result property="sortId" column="sort_id" jdbcType="INTEGER" />
+        <!--状态(1-正常,0-删除)-->
+        <result property="state" column="state" jdbcType="TINYINT" />
+        <!--外部编码-->
+        <result property="externCodeType" column="extern_code_type" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+      ID, code_type, code_value, code_name, code_desc, code_type_alias, sort_id, state, extern_code_type
+    </sql>
+
+    <!-- 查询（根据主键ID查询） -->
+    <select id="selectByPrimaryKey" resultMap="acceptStaticResultMap" parameterType="java.util.Map">
+         SELECT
+         <include refid="Base_Column_List" />
+         FROM cfg_static_data
+         WHERE id = #{id}
+    </select>
+
+    <!--删除：根据主键ID删除-->
+    <delete id="deleteByPrimaryKey" parameterType="java.util.Map">
+         DELETE FROM cfg_static_data
+         WHERE id = #{id}
+    </delete>
+
+    <!-- 添加 -->
+    <insert id="insert" parameterType="java.util.Map">
+         INSERT INTO cfg_static_data
+        (id,code_type,code_value,code_name,code_desc,code_type_alias,sort_id,state,extern_code_type) 
+         VALUES 
+        (#{id},#{codeType},#{codeValue},#{codeName},#{codeDesc},#{codeTypeAlias},#{sortId},#{state},#{externCodeType}) 
+    </insert>
+
+    <!-- 添加 （匹配有值的字段）-->
+    <insert id="insertSelective" parameterType="java.util.Map">
+         INSERT INTO cfg_static_data
+         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null ">
+                 id,
+            </if>
+            <if test="codeType != null and codeType !='' ">
+                 code_type,
+            </if>
+            <if test="codeValue != null and codeValue !='' ">
+                 code_value,
+            </if>
+            <if test="codeName != null and codeName !='' ">
+                 code_name,
+            </if>
+            <if test="codeDesc != null and codeDesc !='' ">
+                 code_desc,
+            </if>
+            <if test="codeTypeAlias != null and codeTypeAlias !='' ">
+                 code_type_alias,
+            </if>
+            <if test="sortId != null ">
+                 sort_id,
+            </if>
+            <if test="state != null ">
+                 state,
+            </if>
+            <if test="externCodeType != null and externCodeType !='' ">
+                 extern_code_type,
+            </if>
+
+         </trim>
+         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null ">
+                 #{id},
+            </if>
+            <if test="codeType != null and codeType !='' ">
+                 #{codeType},
+            </if>
+            <if test="codeValue != null and codeValue !='' ">
+                 #{codeValue},
+            </if>
+            <if test="codeName != null and codeName !='' ">
+                 #{codeName},
+            </if>
+            <if test="codeDesc != null and codeDesc !='' ">
+                 #{codeDesc},
+            </if>
+            <if test="codeTypeAlias != null and codeTypeAlias !='' ">
+                 #{codeTypeAlias},
+            </if>
+            <if test="sortId != null ">
+                 #{sortId},
+            </if>
+            <if test="state != null ">
+                 #{state},
+            </if>
+            <if test="externCodeType != null and externCodeType !='' ">
+                 #{externCodeType},
+            </if>
+         </trim>
+    </insert>
+
+    <!-- 修 改-->
+    <update id="updateByPrimaryKeySelective" parameterType="java.util.Map">
+         UPDATE cfg_static_data
+         <set> 
+            <if test="codeType != null and codeType !='' ">
+                 code_type = #{codeType},
+            </if>
+            <if test="codeValue != null and codeValue !='' ">
+                 code_value = #{codeValue},
+            </if>
+            <if test="codeName != null and codeName !='' ">
+                 code_name = #{codeName},
+            </if>
+            <if test="codeDesc != null and codeDesc !='' ">
+                 code_desc = #{codeDesc},
+            </if>
+            <if test="codeTypeAlias != null and codeTypeAlias !='' ">
+                 code_type_alias = #{codeTypeAlias},
+            </if>
+            <if test="sortId != null ">
+                 sort_id = #{sortId},
+            </if>
+            <if test="state != null ">
+                 state = #{state},
+            </if>
+            <if test="externCodeType != null and externCodeType !='' ">
+                 extern_code_type = #{externCodeType},
+            </if>
+
+         </set>
+         WHERE id = #{id}
+    </update>
+
+    <!-- 修 改-->
+    <update id="updateByPrimaryKey" parameterType="java.util.Map">
+         UPDATE cfg_static_data
+         SET 
+             code_type = #{codeType},
+             code_value = #{codeValue},
+             code_name = #{codeName},
+             code_desc = #{codeDesc},
+             code_type_alias = #{codeTypeAlias},
+             sort_id = #{sortId},
+             state = #{state},
+             extern_code_type = #{externCodeType}
+         WHERE id = #{id}
+    </update>
+	
+	<!-- 分页模糊查询 -->
+    <select id="selectByCond" resultMap="acceptStaticResultMap" parameterType="java.util.Map">
+        SELECT
+        *
+        FROM cfg_static_data
+        WHERE 1=1
+        <if test="codeType != null and codeType !='' ">
+            AND CODE_TYPE like '%${codeType}%'
+        </if>
+        <if test="codeValue != null and codeValue !='' ">
+            AND CODE_VALUE like '%${codeValue}%'
+        </if>
+        <if test="codeName != null and codeName !='' ">
+            AND CODE_NAME like '%${codeName}%'
+        </if>
+        <if test="codeDesc != null and codeDesc !='' ">
+            AND CODE_DESC like '%${codeDesc}%'
+        </if>
+        <if test="externCodeType != null and externCodeType !='' ">
+            AND EXTERN_CODE_TYPE like '%${externCodeType}%'
+        </if>
+        <if test="state != null and state !='' ">
+            AND  state = #{state}
+        </if>
+         order by ID asc
+         limit ${start},${limit}
+    </select>
+    <!-- 查询总条数 -->
+    <select id="selectByCondCount" resultType="string" parameterType="java.util.Map">
+        SELECT count(1)
+        FROM cfg_static_data
+        WHERE 1 = 1
+        <if test="codeType != null and codeType !='' ">
+            AND CODE_TYPE like '%${codeType}%'
+        </if>
+        <if test="codeValue != null and codeValue !='' ">
+            AND CODE_VALUE like '%${codeValue}%'
+        </if>
+        <if test="codeName != null and codeName !='' ">
+            AND CODE_NAME like '%${codeName}%'
+        </if>
+        <if test="codeDesc != null and codeDesc !='' ">
+            AND CODE_DESC like '%${codeDesc}%'
+        </if>
+        <if test="externCodeType != null and externCodeType !='' ">
+            AND EXTERN_CODE_TYPE like '%${externCodeType}%'
+        </if>
+        <if test="state != null and state !='' ">
+            AND  state = #{state}
+        </if>
+       </select>
+        
+</mapper>

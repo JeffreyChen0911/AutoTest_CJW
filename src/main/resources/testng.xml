@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<suite name="我自己的接口测试套件">
-    <test name="这些是测试模块">
-        <classes>
-            <class name="com.course.testng.TestMethodDemo"/>
-            <methods>
-                <include name="test1"/>
-                <include name="test2"/>
-                <include name="test3"/>
-                <include name="logDemo"/>
-            </methods>
-        </classes>
+<suite name="用户管理系统测试套件">
+    <test name="">
     </test>
 </suite>
