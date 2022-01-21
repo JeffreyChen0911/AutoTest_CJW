@@ -43,5 +43,101 @@
 			<version>6.10</version>
 		</dependency>
 	</dependencies>
+	
+	<profiles>
+        <profile>
+            <id>lyprd</id>
+            <build>
+                <plugins>
+                    <!-- 引入ant插件 -->
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <!-- 在compile阶段执行   maven-antrun-plugin 插件的run-->
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- 拷贝file指定文件内容到tofile指定文件中     overwirte="ture"可覆盖tofile指定文件中内容 -->
+                                    <target>
+                                        <copy tofile="${basedir}/src/main/resources/config/system.properties" file="${basedir}/src/main/resources/config/system-lyprd.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/config/redis.properties" file="${basedir}/src/main/resources/config/redis-lyprd.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/config/jdbc.properties" file="${basedir}/src/main/resources/config/jdbc-lyprd.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/spring/spring-dubbo-provider.xml" file="${basedir}/src/main/resources/spring/spring-dubbo-provider-lyprd.xml" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/log4x.properties" file="${basedir}/src/main/resources/log4x-lyprd.properties" overwrite="true" />
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>lytest</id>
+            <build>
+                <plugins>
+                    <!-- 引入ant插件 -->
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <!-- 在validate阶段执行   maven-antrun-plugin 插件的run-->
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- 拷贝file指定文件内容到tofile指定文件中     overwirte="ture"可覆盖tofile指定文件中内容 -->
+                                    <target>
+                                        <copy tofile="${basedir}/src/main/resources/config/system.properties" file="${basedir}/src/main/resources/config/system-lytest.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/config/redis.properties" file="${basedir}/src/main/resources/config/redis-lytest.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/config/jdbc.properties" file="${basedir}/src/main/resources/config/jdbc-lytest.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/spring/spring-dubbo-provider.xml" file="${basedir}/src/main/resources/spring/spring-dubbo-provider-lytest.xml" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/log4x.properties" file="${basedir}/src/main/resources/log4x-lytest.properties" overwrite="true" />
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>hatest</id>
+            <build>
+                <plugins>
+                    <!-- 引入ant插件 -->
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <!-- 在validate阶段执行   maven-antrun-plugin 插件的run-->
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- 拷贝file指定文件内容到tofile指定文件中     overwirte="ture"可覆盖tofile指定文件中内容 -->
+                                    <target>
+                                        <copy tofile="${basedir}/src/main/resources/config/system.properties" file="${basedir}/src/main/resources/config/system-hatest.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/config/redis.properties" file="${basedir}/src/main/resources/config/redis-hatest.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/config/jdbc.properties" file="${basedir}/src/main/resources/config/jdbc-hatest.properties" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/spring/spring-dubbo-provider.xml" file="${basedir}/src/main/resources/spring/spring-dubbo-provider-hatest.xml" overwrite="true" />
+                                        <copy tofile="${basedir}/src/main/resources/log4x.properties" file="${basedir}/src/main/resources/log4x-hatest.properties" overwrite="true" />
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
   
 </project>
